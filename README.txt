@@ -20,7 +20,7 @@ Dificuldade de Teste: Segue o calculo de Dificuldade básica.
 Dureza: Segue o calculo de dureza básica
 Alcance(s): Calculo do Alcances, segue a regras nipou.
 
-Obs: Sempre que setar o NC do NPC se lembre de dar enter
+Obs: Sempre que setar o NC do NPC se lembre de dar enter e você executa o script abrindo base.html num navegador qualquer.
 
 Contatos: 
 Discord: Vancar

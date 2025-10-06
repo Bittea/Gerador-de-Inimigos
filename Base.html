@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Humanos - Estilo Naruto</title>
+  <style>
+    /* ======== ESTILO GERAL ======== */
+    body {
+      background: radial-gradient(circle at top, #f7d49e 0%, #f0b36d 80%);
+      font-family: 'Trebuchet MS', sans-serif;
+      color: #222;
+      padding: 20px;
+      margin: 0;
+      background-image: url('https://wallpaperaccess.com/full/4768409.jpg'); /* símbolo de Konoha sutil */
+      background-size: 200px;
+      background-repeat: no-repeat;
+      background-position: right 30px top 30px;
+    }
+
+    /* Moldura tipo pergaminho */
+    .container {
+      background: #fff8e7;
+      border: 4px solid #7b3f00;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(123, 63, 0, 0.4);
+      padding: 25px 30px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-image: url('https://tse4.mm.bing.net/th/id/OIP.6yUSKFSREQMRXV-4jPBIrAHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3'); /* textura pergaminho */
+      background-size: cover;
+    }
+
+    /* ======== TÍTULOS ======== */
+    .section-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ff4500;
+      text-shadow: 1px 1px 3px #00000060;
+      border-bottom: 2px solid #ff4500;
+      padding-bottom: 4px;
+      margin-top: 10px;
+    }
+
+    .vitalidade {
+      font-size: 22px;
+      font-weight: bold;
+      color: #d10000;
+      text-shadow: 1px 1px 3px #00000060;
+    }
+
+    .chakra {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0099ff;
+      text-shadow: 1px 1px 3px #00000060;
+    }
+
+    .subsection-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #005c16;
+      margin-top: 15px;
+      border-left: 5px solid #00a23d;
+      padding-left: 8px;
+    }
+
+    /* ======== ATRIBUTOS E PERÍCIAS ======== */
+    .attribute {
+      font-size: 16px;
+      color: #000;
+      padding: 4px 0;
+    }
+
+    .effect {
+      font-size: 14px;
+      color: #333;
+      background: rgba(255, 255, 255, 0.4);
+      border-left: 3px solid #ff9900;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin: 4px 0;
+    }
+
+    /* ======== BOTÕES ======== */
+    button {
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #ff8533;
+      transform: scale(1.05);
+    }
+
+    /* ======== FORMULÁRIO ======== */
+    form {
+      background: rgba(255, 255, 255, 0.5);
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border: 1px solid #cfa67d;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #999;
+      margin: 4px;
+    }
+
+    /* ======== EFEITOS ======== */
+    #efeitosGerados {
+      font-style: italic;
+      color: #444;
+      margin-top: 10px;
+      background: rgba(255, 240, 210, 0.7);
+      padding: 8px;
+      border-radius: 6px;
+      border-left: 3px solid #e69500;
+    }
+
+    /* ======== DETALHES ======== */
+    h1.attribute {
+      font-size: 22px;
+      text-align: center;
+      color: #b22222;
+      text-shadow: 1px 1px 2px #00000050;
+      border-bottom: 2px solid #b22222;
+      padding-bottom: 5px;
+      margin-top: 20px;
+    }
+
+    /* ======== ANIMAÇÃO SUTIL ======== */
+    .chakra::after {
+      content: '💠';
+      margin-left: 6px;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="input-group">
+    <p class="section-title">NC da Criatura: <strong><span id="NC"></span></strong></p>
+    <p class="vitalidade">VITALIDADE: <span id="Vitalidade"></span></p>
+    <p class="chakra">CHAKRA: <span id="CHAKRA"></span></p>
+    <button id="modificarTamanho">Selecionar Tamanho</button>
+
+<!-- ======= ÁREA DINÂMICA DE ATRIBUTOS (SUBSTITUI O BLOCO ESTÁTICO ANTIGO) ======= -->
+<div id="atributosContainer">
+  <label><strong>NC:</strong>
+    <input type="number" id="ncInput" min="4" value="4" style="width:70px;">
+  </label>
+
+  <p>
+    <strong>Pontos Totais:</strong> <span id="pontosTotais"></span> |
+    <strong>Restantes:</strong> <span id="pontosRestantes"></span>
+  </p>
+
+  <div style="display:flex; gap:12px; align-items:flex-start;">
+    <div style="flex:1;">
+      <div id="atributos" style="display:grid; grid-template-columns: 1fr; gap:6px;">
+        <!-- inputs gerados dinamicamente -->
+      </div>
+    </div>
+
+    <div style="width:240px;">
+      <div style="margin-bottom:8px;"><strong>Ordem de distribuição</strong></div>
+      <ol id="orderList" style="padding-left:16px; min-height:120px; background:rgba(255,255,255,0.3); border-radius:6px; padding:8px;"></ol>
+
+      <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
+        <button id="autoDistribuirBtn" type="button">Auto-distribuir</button>
+        <button id="resetMinBtn" type="button">Resetar ao mínimo</button>
+      </div>
+
+      <div style="margin-top:10px; font-size:12px; color:#333;">
+        Use os botões ↑/↓ ao lado do atributo para reorganizar a prioridade antes de clicar em <em>Auto-distribuir</em>.
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+    <p class="subsection-title">PERÍCIAS</p>
+    <p class="attribute">Acrobacia:<div><span id="Acrobacia"></span></div></p>
+    <p class="attribute">Arte:<div><span id="Arte"></span></div></p>
+    <p class="attribute">Atletismo:<div><span id="Atletismo"></span></div></p>
+    <p class="attribute">Ciências Naturais:<div><span id="CiênciasNaturais"></span></div></p>
+    <p class="attribute">Concentração:<div><span id="Concentração"></span></div></p>
+    <p class="attribute">Cultura:<div><span id="Cultura"></span></div></p>
+    <p class="attribute">Disfarces:<div><span id="Disfarces"></span></div></p>
+    <p class="attribute">Escapar:<div><span id="Escapar"></span></div></p>
+    <p class="attribute">Furtividade:<div><span id="Furtividade"></span></div></p>
+    <p class="attribute">Lidar com Animais:<div><span id="LidarComAnimais"></span></div></p>
+    <p class="attribute">Mecanismos:<div><span id="Mecanismos"></span></div></p>
+    <p class="attribute">Medicina:<div><span id="Medicina"></span></div></p>
+    <p class="attribute">Ocultismo:<div><span id="Ocultismo"></span></div></p>
+    <p class="attribute">Prestidigitação:<div><span id="Prestidigitação"></span></div></p>
+    <p class="attribute">Procurar:<div><span id="Procurar"></span></div></p>
+    <p class="attribute">Prontidão:<div><span id="Prontidão"></span></div></p>
+    <p class="attribute">Rastrear:<div><span id="Rastrear"></span></div></p>
+    <p class="attribute">Venefício:<div><span id="Venéficio"></span></div></p>
+
+    <h1 class="attribute"><strong>Lista de Efeitos</strong></h1>
+    <form id="geradorForm">
+      <label for="nomeLista">Nome da Lista:</label>
+      <input type="text" id="nomeLista" required>
+      <label for="quantidadeEfeitos">Quantidade de Efeitos:</label>
+      <input type="number" id="quantidadeEfeitos" min="1" max="10" required>
+      <button type="submit">Gerar Efeitos</button>
+    </form>
+
+    <div id="efeitosGerados" class="effect"></div>
+    <button id="removerLista">Remover Última Lista</button>
+
+    <p class="effect">Dano Espiritual: <span id="Dano"></span></p>
+    <p class="effect">Dano Ataque Corporal: <span id="DanoFísico"></span></p>
+    <p class="effect">Dano à Distância: <span id="DanoDistância"></span></p>
+    <p class="effect">Dificuldade de Teste: <span id="Dificuldade"></span></p>
+    <p class="effect">Dureza Técnicas: <span id="Dureza"></span></p>
+    <p class="effect">Alcance Curto: <span id="AlcanceCurto"></span>m</p>
+    <p class="effect">Alcance Médio: <span id="AlcancePoder"></span>m</p>
+    <p class="effect">Alcance Longo: <span id="AlcanceLongo"></span>m</p>
+    <p class="effect">Tamanho: <span id="PoderTamanho"></span>m</p>
+  </div>
+
+  <script src="Atributos & Parametros.js"></script>
+  <script src="Humanos Pericias.js"></script>
+  <script src="Poderes.js"></script>
+</body>
+</html>

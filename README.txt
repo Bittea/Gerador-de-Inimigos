@@ -19,3 +19,11 @@ Dano á Distância: Dano causado por ataques físicos a distância, ele usa o ca
 Dificuldade de Teste: Segue o calculo de Dificuldade básica.
 Dureza: Segue o calculo de dureza básica
 Alcance(s): Calculo do Alcances, segue a regras nipou.
+
+Obs: Sempre que setar o NC do NPC se lembre de dar enter
+
+Contatos: 
+Discord: Vancar
+Gmail: luccas.paivadasilva@gmail.com
+
+Sou um programador novato então ainda estou aprendendo e tentando melhorar, qualquer sugestão, duvida, pedido ou report de bug é só fazer.

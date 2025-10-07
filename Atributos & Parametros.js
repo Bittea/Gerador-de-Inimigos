@@ -176,7 +176,8 @@ function atualizarDerivados() {
   // --- Atributos derivados ---
   const Vitalidade = 10 + 3 * Vigor + NC * 5;
   const Chakra = 10 + 3 * Espirito;
-  const ModAcerto = 5 + NC;
+  const ModAcerto = 3 + Força;
+  const ModAcertoCD = 3 + Destreza;
   const Esquiva = 3 + Agilidade + 9;
   const LerMovimento = 3 + Percepção;
   const Deslocamento = 10 + Math.round(Agilidade / 2);
@@ -216,6 +217,7 @@ function atualizarDerivados() {
   // --- Atualiza HTML ---
   setIf("NC", NC);
   setIf("ModAcerto", ModAcerto);
+  setIf("ModAcertoCD", ModAcertoCD)
   setIf("Vitalidade", Vitalidade);
   setIf("CHAKRA", Chakra);
   setIf("Força", Força);
